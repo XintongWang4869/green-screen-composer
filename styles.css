@@ -1,0 +1,18 @@
+canvas {
+    width: 400px;
+    height: 250px;
+    border: 2px solid #c3c3c3;
+}
+
+.left-section {
+    background-color: #d4edda;
+    padding: 20px;
+    min-height: 100vh;
+    /* Full height */
+}
+
+.right-section {
+    background-color: whitesmoke;
+    padding: 20px;
+    min-height: 100vh;
+}
