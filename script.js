@@ -1,67 +1,76 @@
+var fg_img = null;
+var bg_img = null;
+var output = null;
 
-var fg_exist = false;
-var bg_exist = false;
+var fg_canvas = document.getElementById("fg-canvas");
+var bg_canvas = document.getElementById("bg-canvas");
+var output_canvas = document.getElementById("output-canvas");
+
 
 function upload_img(id) {
-
-    var input_file = document.getElementById(id);
-    var img = new SimpleImage(input_file);
-
+    // alert('ran upload_img');
+    
     if (id === "fg-img") {
-        var canvas = document.getElementById("fg-canvas");
-        fg_exist = true;
+        // alert("fg loading...");
+        
+        fg_img = new SimpleImage(document.getElementById("fg-img"));
+        fg_img.drawTo(fg_canvas);
+        // alert("fg loaded");
     }
-    else {
-        var canvas = document.getElementById("bg-canvas");
-        bg_exist = true;
+    if (id === "bg-img") {
+        bg_img = new SimpleImage(document.getElementById("bg-img"));
+        bg_img.drawTo(bg_canvas);       
     }
 
-    img.drawTo(canvas);
 }
 
 
-function composite(fg, bg) {
-    let fg = document.getElementById(fg);
-    let bg = document.getElementById(bg);
-
-    if (fg_exist && bg_exist) {
-        alert("exist!");
-        var output = new SimpleImage(fg.width, fg.height);
-        for (var pixel of fg.values()) {
+function composite() {
+    if (output) {
+        alert("Please clear the images.")
+    }
+    if (fg_img && bg_img) {
+        // alert("images exist!");
+        var output = new SimpleImage(fg_img.getWidth(), fg_img.getHeight());
+        for (var pixel of fg_img.values()) {
             var x = pixel.getX();
             var y = pixel.getY();
-            if (pass_threshold(pixel)) {
-                var bg_pixel = bg.getPixel(x, y);
+            if (pass_green_threshold(pixel)) {
+                var bg_pixel = bg_img.getPixel(x, y);
+                // todo: fg and bg size should be similar
                 output.setPixel(x, y, bg_pixel);
             }
             else {
                 output.setPixel(x, y, pixel);
             }
         }
-        alert("finish!")
+        output.drawTo(output_canvas)
+        // alert("finish!");
     }
     else {
-        alert("Please upload images first!")
+        alert("Please upload images first!");
     }
 }
 
-function pass_threshold(pixel) {
-    const greenLower = 100;
-    const redUpper = 100;
-    const blueUpper = 100;
-    if (pixel.getGreen() >= greenLower && pixel.getRed() <= redUpper && pixel.getBlue() <= blueUpper) {
+function pass_green_threshold(pixel) {
+
+    if (pixel.getGreen() >= pixel.getRed()*1.5 &&  pixel.getGreen() >= pixel.getBlue()*1.25) {
         return true;
     }
     return false;
 }
 
+
+// todo: clear canvas automatically
 function clear_canvas() {
-    for (let can of [document.getElementById("fg-canvas"), document.getElementById("bg-canvas"), document.getElementById("output-canvas")]) {
+    for (let can of [fg_canvas, bg_canvas, output_canvas]) {
         let ctx = can.getContext("2d");
         ctx.clearRect(0, 0, can.width, can.height);
 
     }
-    alert("clear")
-    fg_exist = false;
-    bg_exist = false;
+    var fg_img = null;
+    var bg_img = null;
+    var output = null;
+    // alert("clear")
+
 }
