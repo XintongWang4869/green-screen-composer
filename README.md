@@ -11,7 +11,7 @@ A simple web-based tool to replace green screens in the foreground image with a 
 
 ## Demo
 
-[Live Demo](https://XintongWang4869.github.io/green-screen-composer/)
+See [here](https://XintongWang4869.github.io/green-screen-composer/) for Live Demo.
 
 ![Demo](./sample-images/demo.png)
 
