@@ -40,7 +40,7 @@ function composite() {
     //     alert("Please clear the images.")
     // }
     if (fg_img == null || bg_img == null) {
-        alert("Please upload images first!");
+        alert("Please upload images first :)");
     }
 
     else {
@@ -63,13 +63,12 @@ function composite() {
         }
 
         // composite 
-        var output = new SimpleImage(fg_img.getWidth(), fg_img.getHeight());
+        output = new SimpleImage(fg_img.getWidth(), fg_img.getHeight());
         for (var pixel of fg_img.values()) {
             var x = pixel.getX();
             var y = pixel.getY();
             if (pass_green_threshold(pixel)) {
                 var bg_pixel = bg_img.getPixel(x, y);
-                // todo: fg and bg size should be similar
                 output.setPixel(x, y, bg_pixel);
             }
             else {
@@ -101,9 +100,23 @@ function clear_canvas() {
         ctx.clearRect(0, 0, can.width, can.height);
 
     }
-    var fg_img = null;
-    var bg_img = null;
-    var output = null;
+    fg_img = null;
+    bg_img = null;
+    output = null;
     // alert("clear")
+}
 
+function download_output() {
+    if (output == null) {
+        alert("Let's create composite!")
+    }
+    else {
+        let link = document.createElement("a");
+        link.href = output_canvas.toDataURL("image/png");
+        link.download = "composite.png";
+        document.body.appendChild(link);
+        link.click(); // Simulate a click to download
+        document.body.removeChild(link);
+        alert("Download successfully!")
+    }
 }

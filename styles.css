@@ -1,8 +1,17 @@
+body {
+    font-family: "Lobster", cursive !important;
+}
+
+
 canvas {
     width: 400px;
     height: 250px;
-    border: 2px solid #c3c3c3;
+    border: 1px solid #CECECE;
+    border-radius: 5px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    background-color: white;
 }
+
 
 .left-section {
     background-color: #d4edda;
@@ -15,4 +24,10 @@ canvas {
     background-color: whitesmoke;
     padding: 20px;
     min-height: 100vh;
+}
+
+
+.btn {
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
 }
