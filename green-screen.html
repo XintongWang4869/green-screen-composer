@@ -26,8 +26,9 @@
                 <div class="mb-4 w-100">
                     <canvas id="fg-canvas" class="mb-3"></canvas>
                     <div>
-                        <input type="file" id="fg-img" multiple="false" accept="image/*" onchange="upload_img('fg-img')" hidden>
-                        <label for="fg-img" class="btn btn-success">Choose the Foreground Image</label>
+                        <input type="file" id="fg-img" multiple="false" accept="image/*" onchange="upload_img('fg-img')"
+                            hidden>
+                        <label for="fg-img" class="btn btn-success">Foreground Image</label>
                     </div>
                 </div>
 
@@ -35,8 +36,9 @@
                 <div class="w-100">
                     <canvas id="bg-canvas" class="mb-3"></canvas>
                     <div>
-                        <input type="file" id="bg-img" multiple="false" accept="image/*" onchange="upload_img('bg-img')" hidden>
-                        <label for="bg-img" class="btn btn-success">Choose the Background Image</label>
+                        <input type="file" id="bg-img" multiple="false" accept="image/*" onchange="upload_img('bg-img')"
+                            hidden>
+                        <label for="bg-img" class="btn btn-success">Background Image</label>
                     </div>
                 </div>
             </div>
@@ -51,7 +53,7 @@
 
                 <div>
                     <input type="button" value="Create Composite" class="btn btn-primary me-2" onclick="composite()">
-                    <input type="button" value="Clear Canvas" class="btn btn-primary" onclick="clear_canvas()">
+                    <input type="button" value="Clear Canvases" class="btn btn-primary" onclick="clear_canvas()">
                 </div>
             </div>
 
