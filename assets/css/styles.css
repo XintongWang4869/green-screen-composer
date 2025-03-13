@@ -1,5 +1,6 @@
-body {
-    font-family: "Lobster", cursive !important;
+a {
+    color: inherit !important;
+    /* Inherits color from the parent element */
 }
 
 
@@ -30,4 +31,15 @@ canvas {
 .btn {
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease-in-out;
+}
+
+
+
+footer {
+    background-color: #222;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 0.9em;
+    margin-top: 20px;
 }
