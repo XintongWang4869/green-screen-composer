@@ -14,6 +14,16 @@ canvas {
 }
 
 
+.title {
+    font-family: 'Poppins', sans-serif; 
+    font-size: 2.5rem; 
+    font-weight: 500; 
+    text-align: center;
+    color: #007bff; 
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.15); 
+    margin-bottom: 1.5rem;
+}
+
 .left-section {
     background-color: #d4edda;
     padding: 20px;

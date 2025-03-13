@@ -1,11 +1,12 @@
 
-let base_img = null
+let base_img = null;
+let output = null;
 
 function upload_img() {
-    alert('ran upload_img');
+    // alert('ran upload_img');
     base_img = new SimpleImage(document.getElementById("base_img"));
     base_img.drawTo(document.getElementById("base-canvas"));
-    alert("Loaded");
+    // alert("Loaded");
 }
 
 
@@ -14,11 +15,11 @@ function filter(color) {
         alert("Please upload images first :)");
     }
     else {
-        let output = new SimpleImage(base_img.getWidth(), base_img.getHeight());
+        output = new SimpleImage(base_img.getWidth(), base_img.getHeight());
         let canvas = document.getElementById("output-canvas");
         let width = base_img.getWidth();
         let height = base_img.getHeight();
-        alert("start to apply filter!")
+        // alert("start to apply filter!")
         for (let y = 0; y < height; y++) {
             for (let x = 0; x < width; x++) {
                 let pixel = base_img.getPixel(x, y);
@@ -39,7 +40,7 @@ function filter(color) {
 
             }
         }
-        alert("finished")
+        // alert("finished")
         output.drawTo(canvas);
     }
 }
@@ -57,8 +58,23 @@ function clear_canvas() {
     for (let can of [document.getElementById("base-canvas"), document.getElementById("output-canvas")]) {
         let ctx = can.getContext("2d");
         ctx.clearRect(0, 0, can.width, can.height);
-
     }
 
     base_img = null;
+    output = null;
+}
+
+function download_output() {
+    if (output == null) {
+        alert("Let's play with filters!")
+    }
+    else {
+        let link = document.createElement("a");
+        link.href = document.getElementById("output-canvas").toDataURL("image/png");
+        link.download = "filtered.png";
+        document.body.appendChild(link);
+        link.click(); // Simulate a click to download
+        document.body.removeChild(link);
+        alert("Download successfully!")
+    }
 }

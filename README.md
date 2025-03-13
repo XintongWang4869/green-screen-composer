@@ -1,19 +1,22 @@
-# Green Screen Composer
+# Green Screen & Image Filter App
 
-A simple web-based tool to replace green screens in the foreground image with a selected background using JavaScript.
+A simple web-based tool that allows you to upload images, remove green screen backgrounds, and apply filters to images. This project is built using HTML, CSS, and JavaScript.
 
 ## Features
 
-- Upload a foreground image with a green screen.
-- Upload a background image.
-- Automatically detect and replace the green pixels with the background.
-- Download the final composite image.
+- Green Screen Removal – Replace the green screen background with a custom image.
+- Image Filters – Apply various filters to enhance your images. (More filters coming soon!)
+
 
 ## Demo
 
-See [here](https://XintongWang4869.github.io/green-screen-composer/) for Live Demo.
+See [here](https://XintongWang4869.github.io/green-screen-composer/docs/) for Live Demo.
 
-![Demo](./sample-images/demo.png)
+* Replacing the green screen with your desired image:  
+![Green Screen Demo](assets/images/demo-green-screen.png)
+
+* Making your image gray-scale:  
+![Gray Filter Demo](assets/images/demo-gray-filter.png)
 
 
 ## Limitations
