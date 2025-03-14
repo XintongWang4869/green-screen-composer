@@ -13,36 +13,37 @@ function upload_img() {
 function filter(color) {
     if (base_img == null) {
         alert("Please upload images first :)");
+        return;
     }
-    else {
-        output = new SimpleImage(base_img.getWidth(), base_img.getHeight());
-        let canvas = document.getElementById("output-canvas");
-        let width = base_img.getWidth();
-        let height = base_img.getHeight();
-        // alert("start to apply filter!")
-        for (let y = 0; y < height; y++) {
-            for (let x = 0; x < width; x++) {
-                let pixel = base_img.getPixel(x, y);
-                let red, green, blue;
 
-                if (color === 'gray') {
+    output = new SimpleImage(base_img.getWidth(), base_img.getHeight());
+    let canvas = document.getElementById("output-canvas");
+    let width = base_img.getWidth();
+    let height = base_img.getHeight();
+    // alert("start to apply filter!");
+    for (let y = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
+            let pixel = base_img.getPixel(x, y);
+            let red, green, blue;
 
-                    let { red: newRed, green: newGreen, blue: newBlue } = gray_filter(pixel.getRed(), pixel.getGreen(), pixel.getBlue());
-                    red = newRed;
-                    green = newGreen;
-                    blue = newBlue;
-                }
+            if (color === 'gray') {
 
-                let outputPixel = output.getPixel(x, y);
-                outputPixel.setRed(red);
-                outputPixel.setGreen(green);
-                outputPixel.setBlue(blue);
-
+                let { red: newRed, green: newGreen, blue: newBlue } = gray_filter(pixel.getRed(), pixel.getGreen(), pixel.getBlue());
+                red = newRed;
+                green = newGreen;
+                blue = newBlue;
             }
+
+            let outputPixel = output.getPixel(x, y);
+            outputPixel.setRed(red);
+            outputPixel.setGreen(green);
+            outputPixel.setBlue(blue);
+
         }
-        // alert("finished")
-        output.drawTo(canvas);
     }
+    // alert("finished")
+    output.drawTo(canvas);
+
 }
 
 
@@ -66,7 +67,7 @@ function clear_canvas() {
 
 function download_output() {
     if (output == null) {
-        alert("Let's play with filters!")
+        alert("Let's play with filters!");
     }
     else {
         let link = document.createElement("a");
@@ -75,6 +76,6 @@ function download_output() {
         document.body.appendChild(link);
         link.click(); // Simulate a click to download
         document.body.removeChild(link);
-        alert("Download successfully!")
+        alert("Download successfully!");
     }
 }

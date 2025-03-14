@@ -1,10 +1,10 @@
-var fg_img = null;
-var bg_img = null;
-var output = null;
+let fg_img = null;
+let bg_img = null;
+let output = null;
 
-var fg_canvas = document.getElementById("fg-canvas");
-var bg_canvas = document.getElementById("bg-canvas");
-var output_canvas = document.getElementById("output-canvas");
+let fg_canvas = document.getElementById("fg-canvas");
+let bg_canvas = document.getElementById("bg-canvas");
+let output_canvas = document.getElementById("output-canvas");
 
 
 function upload_img(id) {
@@ -41,45 +41,47 @@ function composite() {
     // }
     if (fg_img == null || bg_img == null) {
         alert("Please upload images first :)");
+        return;
+    }
+
+
+    // resize the images:
+    let fg_w = fg_img.getWidth();
+    let fg_h = fg_img.getHeight();
+    let bg_w = bg_img.getWidth();
+    let bg_h = bg_img.getHeight();
+    if (fg_w <= bg_w && fg_h <= bg_h) {
+        // resize bg
+        bg_img = resize(bg_canvas, fg_w, fg_h);
+    }
+    else if (fg_w > bg_w && fg_h > bg_h) {
+        // resize fg
+        fg_img = resize(fg_canvas, bg_w, bg_h);
     }
 
     else {
-        // resize the images:
-        let fg_w = fg_img.getWidth();
-        let fg_h = fg_img.getHeight();
-        let bg_w = bg_img.getWidth();
-        let bg_h = bg_img.getHeight();
-        if (fg_w <= bg_w && fg_h <= bg_h) {
-            // resize bg
-            bg_img = resize(bg_canvas, fg_w, fg_h);
-        }
-        else if (fg_w > bg_w && fg_h > bg_h) {
-            // resize fg
-            fg_img = resize(fg_canvas, bg_w, bg_h);
-        }
-
-        else {
-            alert("The uploaded images have very different size. Please try other images.")
-        }
-
-        // composite 
-        output = new SimpleImage(fg_img.getWidth(), fg_img.getHeight());
-        for (var pixel of fg_img.values()) {
-            var x = pixel.getX();
-            var y = pixel.getY();
-            if (pass_green_threshold(pixel)) {
-                var bg_pixel = bg_img.getPixel(x, y);
-                output.setPixel(x, y, bg_pixel);
-            }
-            else {
-                output.setPixel(x, y, pixel);
-            }
-        }
-        output.drawTo(output_canvas)
-        // alert("finish!");
-
-
+        alert("The uploaded images have very different size. Please try other images.");
+        return;
     }
+
+    // composite 
+    output = new SimpleImage(fg_img.getWidth(), fg_img.getHeight());
+    for (let pixel of fg_img.values()) {
+        let x = pixel.getX();
+        let y = pixel.getY();
+        if (pass_green_threshold(pixel)) {
+            let bg_pixel = bg_img.getPixel(x, y);
+            output.setPixel(x, y, bg_pixel);
+        }
+        else {
+            output.setPixel(x, y, pixel);
+        }
+    }
+    output.drawTo(output_canvas);
+    // alert("finish!");
+
+
+
 
 
 }
@@ -108,7 +110,7 @@ function clear_canvas() {
 
 function download_output() {
     if (output == null) {
-        alert("Let's create composite!")
+        alert("Let's create composite!");
     }
     else {
         let link = document.createElement("a");
@@ -117,6 +119,6 @@ function download_output() {
         document.body.appendChild(link);
         link.click(); // Simulate a click to download
         document.body.removeChild(link);
-        alert("Download successfully!")
+        alert("Download successfully!");
     }
 }
