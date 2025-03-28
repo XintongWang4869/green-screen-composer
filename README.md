@@ -10,7 +10,7 @@ A simple web-based tool that allows you to upload images, remove green screen ba
 
 ## Demo
 
-See [here](https://xintongwang4869.github.io/green-screen-composer/) for Live Demo.    
+See [here](https://xintongwang4869.github.io/green-screen-composer/index) for Live Demo.    
 > Feel free to use sample images in the `assets/images/` directory.
 
 * Index page:   
