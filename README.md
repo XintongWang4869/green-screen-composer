@@ -10,17 +10,17 @@ A simple web-based tool that allows you to upload images, remove green screen ba
 
 ## Demo
 
-See [here](https://XintongWang4869.github.io/green-screen-composer/docs/) for Live Demo.    
+See [here](https://xintongwang4869.github.io/green-screen-composer/) for Live Demo.    
 > Feel free to use sample images in the `assets/images/` directory.
 
 * Index page:   
-![Home Page](assets/images/demo-index-page.jpeg)
+![Home Page](docs/assets/images/demo-index-page.jpeg)
 
 * Replacing the green screen with your desired image:  
-![Green Screen Demo](assets/images/demo-green-screen.png)
+![Green Screen Demo](docs/assets/images/demo-green-screen.png)
 
 * Making your image gray-scale:  
-![Gray Filter Demo](assets/images/demo-gray-filter.png)
+![Gray Filter Demo](docs/assets/images/demo-gray-filter.png)
 
 
 ## Limitations
